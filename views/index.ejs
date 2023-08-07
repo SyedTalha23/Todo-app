@@ -1,0 +1,31 @@
+<%- include("header") %>
+    <div class="container">
+        <div class="title-div">
+        <h1><%= todaysDate %></h1>
+        <h1><%= title%></h1>
+        </div>
+
+        <div class="todo-list">
+            <ul id="taskList">
+                <% for(let i=0;i<List.length;i++){ %>
+                    <li><input type="checkbox"><span id="span<%= i %>"><%= " "+ List[i] %></span> <form action="/removeItem" method="post"><input type="text" name="hiddenVal" type="hidden" value="<%= i %>" style="display:none;"><button type="submit" name="removeButton" value="<%=title%>">remove item</button></form></li>
+                <% } %>
+            </ul>
+            <form action="/" method="post">
+                <input type="text" id="taskInput" placeholder="Enter task..." name="taskInput" autofocus required>
+                <button type="submit" name="button" value="<%=title%>">Add</button>
+            </form>
+        <form action="/clearList" method="post"><button type="submit" name="clearButton" value="<%=title%>" >clear list</button></form>
+        </div>
+        <%if(title==="Todo List"){ %>
+            <a href="/work">go to work list</a>
+        <% } else if(title==="Work List"){ %>
+            <a href="/">go to todo list</a>
+        <% } %>
+
+        
+         
+    </div>
+
+    <script src="js/script.js"></script>
+<%- include("footer") %>
